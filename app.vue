@@ -8,7 +8,9 @@
 
 <script setup lang="ts">
 import { getCustomUISDK } from '~/server/uisdk';
+const route = useRoute()
 onMounted(async ()=>{
+    console.log(toRaw(route))
     const sdk = await getCustomUISDK();
 })
 </script>
