@@ -14,10 +14,9 @@ const loadDeals = async ()=>{
   }
 
 }
-const sdk = await getCustomUISDK();
-// onMounted(async ()=>{
-//     const sdk = await getCustomUISDK();
-// })
+onMounted(async ()=>{
+    const sdk = await getCustomUISDK();
+})
 
 </script>
 
