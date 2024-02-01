@@ -18,7 +18,7 @@
         className="p-2 m-2"
         target="_blank"
         rel="noreferrer"
-        :href="url.href+'/api/auth/callback/pipedrive'"
+        :href="url.origin+'/api/auth/callback/pipedrive'"
       >
         Please re-authorize
       </a>
