@@ -3,13 +3,20 @@
     <v-main class="d-flex justify-center" style="min-height: 300px;">
       <v-container fluid>
           <v-row>
+            <v-alert
+                v-if="sign?.error"
+                type="error"
+                title="Błąd"
+                :text="sign.error"
+            ></v-alert>
             <v-col cols="12">
                 {{ status }}
                 {{ data }}
               <v-btn v-if="status=='authenticated'" @click="signOut()">Wyloguj</v-btn>
-              <v-btn v-else @click="pipedrive">Logowanie...</v-btn>
+              <span v-else>Logowanie...</span>
               <v-btn v-if="status=='authenticated'" @click="loadDeals()" :loading="loading">Get deals</v-btn>
             </v-col>
+            
           </v-row>
       </v-container>
     </v-main>
@@ -21,6 +28,7 @@ import { getCustomUISDK } from '~/server/uisdk';
 const url = useRequestURL()
 onMounted(async ()=>{
     console.log(url)
+    if(status.value != 'authenticated') sign.value = await signIn('pipedrive')
     const sdk = await getCustomUISDK();
 })
 const { status, data, signOut, signIn }: any = useAuth()
@@ -38,12 +46,5 @@ const loadDeals = async ()=>{
 
 }
 const sign = ref<any>(null)
-const pipedrive = async () =>{
-    loading.value = true
-    sign.value = await signIn('pipedrive')
-    if (!sign.value?.error) {
-        navigateTo("/")
-    }
-    loading.value = false
-}
+
 </script>
