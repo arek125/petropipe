@@ -13,7 +13,7 @@
                 {{ status }}
                 {{ data }}
               <v-btn v-if="status=='authenticated'" @click="signOut()">Wyloguj</v-btn>
-              <span v-else>Logowanie...</span>
+              <span v-else @click="pipedrive">Logowanie...</span>
               <v-btn v-if="status=='authenticated'" @click="loadDeals()" :loading="loading">Get deals</v-btn>
             </v-col>
             
@@ -29,7 +29,6 @@ const url = useRequestURL()
 onMounted(async ()=>{
     console.log(url)
     const sdk = await getCustomUISDK();
-    if(status.value != 'authenticated') sign.value = await signIn('pipedrive')
 })
 const { status, data, signOut, signIn }: any = useAuth()
 const loading = ref<boolean>(false)
@@ -46,5 +45,9 @@ const loadDeals = async ()=>{
 
 }
 const sign = ref<any>(null)
-
+const pipedrive = async () =>{
+    loading.value = true
+    sign.value = await signIn('pipedrive')
+    loading.value = false
+}
 </script>
