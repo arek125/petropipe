@@ -4,6 +4,7 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
+  ssr: false,
   devServer: {
     https: {
     key: 'localhost-key.pem',
