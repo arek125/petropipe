@@ -5,3 +5,9 @@
     </v-main>
   </v-layout>
 </template>
+
+<script setup>
+onMounted(async ()=>{
+    const sdk = await getCustomUISDK();
+})
+</script>
