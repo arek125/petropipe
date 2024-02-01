@@ -8,7 +8,7 @@ import AppExtensionsSDK, {
   export const getCustomUISDK = async () => {
     try {
       if (SDK) return SDK;
-      SDK = await new AppExtensionsSDK().initialize({ size: { height: 550 } });
+      SDK = await new AppExtensionsSDK().initialize();
       return SDK;
     } catch (e) {
       console.log('Error during SDK initialization', e);

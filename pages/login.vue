@@ -18,18 +18,18 @@ import { onMounted } from 'vue';
         loading.value = false
     }
     onMounted(()=>{
-        pipedrive()
+        //pipedrive()
     })
 </script>
 
 <template>
     <v-card :loading="loading">
-        Logowanie...
         <v-alert
             v-if="sign?.error"
             type="error"
             title="Błąd"
             :text="sign.error"
         ></v-alert>
+        <v-btn v-else @click="pipedrive">Logowanie...</v-btn>
     </v-card>
 </template>

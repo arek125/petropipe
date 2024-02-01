@@ -4,6 +4,12 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
+  devServer: {
+    https: {
+    key: 'localhost-key.pem',
+    cert: 'localhost.pem'
+    }
+  },
   modules: [
     '@sidebase/nuxt-auth',
     (_options, nuxt) => {
@@ -19,7 +25,8 @@ export default defineNuxtConfig({
   },
   auth: {
     isEnabled: true,
-    globalAppMiddleware: true
+    globalAppMiddleware: true,
+    baseURL: process.env.AUTH_ORIGIN
   },
   vite: {
     vue: {
