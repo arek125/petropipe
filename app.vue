@@ -13,7 +13,22 @@
                 {{ status }}
                 {{ data }}
               <v-btn v-if="status=='authenticated'" @click="signOut()">Wyloguj</v-btn>
-              <span v-else @click="pipedrive">Logowanie...</span>
+              <v-btn v-else @click="pipedrive">Logowanie...</v-btn>
+              <a
+        className="p-2 m-2"
+        target="_blank"
+        rel="noreferrer"
+        :href="url.href+'/api/auth/callback/pipedrive'"
+      >
+        Please re-authorize
+      </a>
+      and then
+      <a
+        href="#"
+        @click="reaload"
+      >
+        refresh the page
+      </a>
               <v-btn v-if="status=='authenticated'" @click="loadDeals()" :loading="loading">Get deals</v-btn>
             </v-col>
             
@@ -49,5 +64,8 @@ const pipedrive = async () =>{
     loading.value = true
     sign.value = await signIn('pipedrive')
     loading.value = false
+}
+const reaload=()=>{
+    window.location.reload();
 }
 </script>
