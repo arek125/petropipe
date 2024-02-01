@@ -28,8 +28,8 @@ import { getCustomUISDK } from '~/server/uisdk';
 const url = useRequestURL()
 onMounted(async ()=>{
     console.log(url)
-    if(status.value != 'authenticated') sign.value = await signIn('pipedrive')
     const sdk = await getCustomUISDK();
+    if(status.value != 'authenticated') sign.value = await signIn('pipedrive')
 })
 const { status, data, signOut, signIn }: any = useAuth()
 const loading = ref<boolean>(false)
