@@ -3,7 +3,7 @@ import { onMounted } from 'vue';
     definePageMeta({
         auth: {
             unauthenticatedOnly: true,
-            navigateAuthenticatedTo: '/',
+            //navigateAuthenticatedTo: '/',
         }
     })
     const { signIn } = useAuth()

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { status, data, signOut }: any = useAuth()
+const { status, data, signOut, signIn }: any = useAuth()
 const loading = ref<boolean>(false)
 const loadDeals = async ()=>{
   try{
@@ -13,7 +13,15 @@ const loadDeals = async ()=>{
   }
 
 }
-
+const sign = ref<any>(null)
+    const pipedrive = async () =>{
+        loading.value = true
+        sign.value = await signIn('pipedrive')
+        if (!sign.value?.error) {
+            navigateTo("/")
+        }
+        loading.value = false
+    }
 </script>
 
 <template>
@@ -22,8 +30,9 @@ const loadDeals = async ()=>{
         <v-col cols="12">
             {{ status }}
             {{ data }}
-          <v-btn @click="signOut()">Wyloguj</v-btn>
-          <v-btn @click="loadDeals()" :loading="loading">Get deals</v-btn>
+          <v-btn v-if="status=='authenticated'" @click="signOut()">Wyloguj</v-btn>
+          <v-btn v-else @click="pipedrive">Logowanie...</v-btn>
+          <v-btn v-if="status=='authenticated'" @click="loadDeals()" :loading="loading">Get deals</v-btn>
         </v-col>
       </v-row>
   </v-container>
