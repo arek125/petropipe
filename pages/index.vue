@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const { status, data, signOut }: any = useAuth()
 const loading = ref<boolean>(false)
-import { getCustomUISDK } from '~/server/uisdk';
 const loadDeals = async ()=>{
   try{
     loading.value = true

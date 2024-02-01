@@ -6,7 +6,8 @@
   </v-layout>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { getCustomUISDK } from '~/server/uisdk';
 onMounted(async ()=>{
     const sdk = await getCustomUISDK();
 })
